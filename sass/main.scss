@@ -2,5 +2,105 @@
 @import "font-awesome";
 
 body {
-  background: #e2ebf3;
+  background-color: black;
+}
+
+.logo {
+  background: url(../images/logo.png);
+  background-size: contain;
+  width: 95%;
+  height: 150px;
+  background-repeat: no-repeat;
+  margin-left: 3%;
+
+}
+
+
+
+.choose {
+  text-align: center;
+  margin-top: 5px;
+  div {
+    width: 300px;
+    height: 399px;
+    background-color: blue;
+    margin: 5px;
+    display: inline-block;
+    border-radius: 2px;
+  }
+
+  .choice1 {
+    background: url(../images/julius_head.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+
+  .choice2 {
+    background: url(../images/lc_head.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+
+  .choice3 {
+    background: url(../images/salad_head.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+
+  span {
+    display: inline;
+    color: white;
+    font-size: 40px;
+  }
+}
+
+.fight {
+  display: none;
+  text-align: center;
+  
+  .ourHero {
+    width: 300px;
+    height: 399px;
+    background-color: blue;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: 1px solid #232318;
+    border-radius: 2px;
+    float: left;
+    overflow: hidden;
+    margin-left: 20%;
+    margin-top: 5%;
+  }
+
+  .challenger {
+    width: 300px;
+    height: 399px;
+    background-color: blue;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: 1px solid #232318;
+    border-radius: 2px;
+    float: right;
+    overflow: hidden;
+    margin-right: 20%;
+    margin-top: 5%;
+  }
+
+
+  .fightMessage {
+    background-color: white;
+    opacity: 1;
+    clear: both;
+    text-align: center;
+  }
+}
+
+.win {
+  display: none;
+  text-align: center;
+      width: 100%;
+    height: 100%;
 }
