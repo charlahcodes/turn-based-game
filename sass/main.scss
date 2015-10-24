@@ -5,6 +5,16 @@ body {
   background-color: black;
 }
 
+.background {
+  width: 100%;
+  height: 100%;
+  background: url(../images/julius.jpg);
+  background-size: cover;
+  position: absolute;
+  z-index: 0;
+  display: none;
+}
+
 .logo {
   background: url(../images/logo.png);
   background-size: contain;
@@ -12,14 +22,16 @@ body {
   height: 150px;
   background-repeat: no-repeat;
   margin-left: 3%;
-
+  z-index: 1;
+  position: relative;
 }
-
-
 
 .choose {
   text-align: center;
   margin-top: 5px;
+  z-index: 1;
+  position: relative;
+
   div {
     width: 300px;
     height: 399px;
@@ -60,6 +72,14 @@ body {
 .fight {
   display: none;
   text-align: center;
+  position: relative;
+
+  .ggName {
+    color: red;
+    font-size: 30px;
+    background-color: black;
+    opacity: .50;
+  }
   
   .ourHero {
     width: 300px;
@@ -95,7 +115,16 @@ body {
     opacity: 1;
     clear: both;
     text-align: center;
+    position: relative;
   }
+}
+
+.ggHealth {
+  position: relative;
+}
+
+.bgHealth {
+  position: relative;
 }
 
 .win {

@@ -5,9 +5,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var Caesar = function Caesar(totalHealth) {
+var Caesar = function Caesar(totalHealth, name) {
 
   this.health = totalHealth;
+  this.name = name;
 
   this.hit = function (num) {
     var hitPoints = num || 10;
