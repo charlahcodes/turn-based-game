@@ -77,22 +77,17 @@ var death = new _challenger2['default'](200, 'Death');
 var ggHealth = (0, _jquery2['default'])('.ggHealth');
 var bgHealth = (0, _jquery2['default'])('.bgHealth');
 var ggAttack = (0, _jquery2['default'])('.ggAttack');
-var ggName = (0, _jquery2['default'])('.ggName');
-var bgName = (0, _jquery2['default'])('.bgName');
 var fightMessage = (0, _jquery2['default'])('.fightMessage');
 
 var chooseBadGuy = _underscore2['default'].random(0, 100);
 
 if (chooseBadGuy < 34) {
   badguy = commonCold;
-  bgName.text(commonCold.name);
   (0, _jquery2['default'])('.challenger').css('background', 'url(./images/cold.jpg)');
 } else if (chooseBadGuy > 34 && chooseBadGuy < 67) {
-  bgName.text(boredom.name);
   badguy = boredom;
   (0, _jquery2['default'])('.challenger').css('background', 'url(./images/boredom.jpg)');
 } else {
-  bgName.text(death.name);
   badguy = death;
   (0, _jquery2['default'])('.challenger').css('background', 'url(./images/death.jpg)');
 };
@@ -100,7 +95,6 @@ if (chooseBadGuy < 34) {
 // On click, choose correct player and hide choices/show fight screen
 (0, _jquery2['default'])(".choice1").click(function () {
   ourHero = julius;
-  ggName.text(julius.name);
   ggHealth.text(ourHero.health);
   (0, _jquery2['default'])('.background').css('background', 'url(./images/julius.jpg)');
   (0, _jquery2['default'])('.background').css('background-size', 'cover');
@@ -117,7 +111,6 @@ if (chooseBadGuy < 34) {
 
 (0, _jquery2['default'])(".choice2").click(function () {
   ourHero = little;
-  ggName.text(little.name);
   ggHealth.text(ourHero.health);
   (0, _jquery2['default'])('.background').css('background', 'url(./images/little.jpg)');
   (0, _jquery2['default'])('.background').css('background-size', 'cover');
@@ -133,7 +126,6 @@ if (chooseBadGuy < 34) {
 
 (0, _jquery2['default'])(".choice3").click(function () {
   ourHero = salad;
-  ggName.text(salad.name);
   ggHealth.text(ourHero.health);
   (0, _jquery2['default'])('.background').css('background', 'url(./images/salad.jpg)');
   (0, _jquery2['default'])('.background').css('background-size', 'cover');

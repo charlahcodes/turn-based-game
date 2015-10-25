@@ -21,22 +21,17 @@ let death = new Challenger(200, 'Death');
 let ggHealth = $('.ggHealth');
 let bgHealth = $('.bgHealth');
 let ggAttack = $('.ggAttack');
-let ggName = $('.ggName');
-let bgName = $('.bgName');
 let fightMessage = $('.fightMessage');
 
 let chooseBadGuy = _.random(0, 100);
 
 if (chooseBadGuy < 34) {
   badguy = commonCold;
-  bgName.text(commonCold.name);
   $('.challenger').css('background', 'url(./images/cold.jpg)')
 } else if ((chooseBadGuy > 34) && (chooseBadGuy < 67)) {
-  bgName.text(boredom.name);
   badguy = boredom;
   $('.challenger').css('background', 'url(./images/boredom.jpg)')
 } else {
-  bgName.text(death.name);
   badguy = death;
   $('.challenger').css('background', 'url(./images/death.jpg)')
 };
@@ -44,7 +39,6 @@ if (chooseBadGuy < 34) {
 // On click, choose correct player and hide choices/show fight screen
 $(".choice1").click(function(){
   ourHero = julius;
-  ggName.text(julius.name);
   ggHealth.text(ourHero.health);
   $('.background').css('background', 'url(./images/julius.jpg)');
   $('.background').css('background-size', 'cover');
@@ -61,7 +55,6 @@ $(".choice1").click(function(){
 
 $(".choice2").click(function(){
   ourHero = little;
-  ggName.text(little.name);
   ggHealth.text(ourHero.health);
   $('.background').css('background', 'url(./images/little.jpg)');
   $('.background').css('background-size', 'cover');
@@ -77,7 +70,6 @@ $(".choice2").click(function(){
 
 $(".choice3").click(function(){
   ourHero = salad;
-  ggName.text(salad.name);
   ggHealth.text(ourHero.health);
   $('.background').css('background', 'url(./images/salad.jpg)');
   $('.background').css('background-size', 'cover');
