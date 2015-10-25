@@ -95,27 +95,45 @@ ggAttack.on('click', function () {
   let num = _.random(0, 25);
   let num2 = _.random(0, 25);
   badguy.hit(num);
+  bgHealth.css('color', 'red');
+  bgHealth.text(ourHero.health);
+  setTimeout( function () {
+    bgHealth.css('color', 'white');
+  }, 500);
 
   if (badguy.health <= 0) {
-    bgHealth.text('Defeated');
     $('.fight').css('display', 'none');
     $('.background').css('display', 'none');
     $(document.body).css('background-image', 'url(./images/hail.png');
     $(document.body).css('background-size', 'cover');
     $(document.body).css('background-color', 'black');
     $(document.body).css('background-repeat', 'no-repeat');
+    setTimeout( function () {
+      $('.choose').fadeIn(500);
+      $(document.body).css('background-image', 'none');
+      window.location.reload();
+    }, 1000);
 
   } else {
     bgHealth.text(badguy.health);
-    fightMessage.text('Bowser Fights Back!!!');
+    fightMessage.text(badguy.name + ' and ' + ourHero.name + ' duke it out!');
     ourHero.hit(num2);
     ggHealth.css('color', 'red');
     ggHealth.text(ourHero.health);
     setTimeout( function () {
-      ggHealth.css('color', 'black');
+      ggHealth.css('color', 'white');
+    }, 500);
+      if (ourHero.health <= 0) {
+      fightMessage.text(ourHero.name + " has been defeated!");
+      ggHealth.text('Defeated');
+      setTimeout( function () {
+      $('.background').css('display', 'none');
+      $('.fight').css('display', 'none');
+      $('.choose').fadeIn(500);
+      window.location.reload();
     }, 1000);
-  }
-
+    };
+  };
 });
 
 

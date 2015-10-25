@@ -151,25 +151,44 @@ ggAttack.on('click', function () {
   var num = _underscore2['default'].random(0, 25);
   var num2 = _underscore2['default'].random(0, 25);
   badguy.hit(num);
+  bgHealth.css('color', 'red');
+  bgHealth.text(ourHero.health);
+  setTimeout(function () {
+    bgHealth.css('color', 'white');
+  }, 500);
 
   if (badguy.health <= 0) {
-    bgHealth.text('Defeated');
     (0, _jquery2['default'])('.fight').css('display', 'none');
     (0, _jquery2['default'])('.background').css('display', 'none');
     (0, _jquery2['default'])(document.body).css('background-image', 'url(./images/hail.png');
     (0, _jquery2['default'])(document.body).css('background-size', 'cover');
     (0, _jquery2['default'])(document.body).css('background-color', 'black');
     (0, _jquery2['default'])(document.body).css('background-repeat', 'no-repeat');
+    setTimeout(function () {
+      (0, _jquery2['default'])('.choose').fadeIn(500);
+      (0, _jquery2['default'])(document.body).css('background-image', 'none');
+      window.location.reload();
+    }, 1000);
   } else {
     bgHealth.text(badguy.health);
-    fightMessage.text('Bowser Fights Back!!!');
+    fightMessage.text(badguy.name + ' and ' + ourHero.name + ' duke it out!');
     ourHero.hit(num2);
     ggHealth.css('color', 'red');
     ggHealth.text(ourHero.health);
     setTimeout(function () {
-      ggHealth.css('color', 'black');
-    }, 1000);
-  }
+      ggHealth.css('color', 'white');
+    }, 500);
+    if (ourHero.health <= 0) {
+      fightMessage.text(ourHero.name + " has been defeated!");
+      ggHealth.text('Defeated');
+      setTimeout(function () {
+        (0, _jquery2['default'])('.background').css('display', 'none');
+        (0, _jquery2['default'])('.fight').css('display', 'none');
+        (0, _jquery2['default'])('.choose').fadeIn(500);
+        window.location.reload();
+      }, 1000);
+    };
+  };
 });
 
 },{"./caesars":1,"./challenger":2,"jquery":4,"underscore":5}],4:[function(require,module,exports){

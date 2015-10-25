@@ -2110,10 +2110,12 @@ body {
     margin-top: 5%; }
   .fight .fightMessage {
     background-color: white;
-    opacity: 1;
+    opacity: .8;
     clear: both;
     text-align: center;
-    position: relative; }
+    position: relative;
+    margin-left: 40%;
+    margin-right: 40%; }
 
 .ggHealth {
   display: inline-block;
