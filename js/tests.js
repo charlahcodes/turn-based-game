@@ -1,22 +1,25 @@
-import caesars from './caesars';
+import Caesar from './caesars';
+import Challenger from './challenger';
+import Weapon from './weapons';
 
 (function() {
   'use strict';
 
-  describe('About My Good Guy', function() {
+// Caesars
+  describe('About My Caesars', function() {
 
     beforeEach( function() {
-      window.x = new GoodGuy();
+      window.x = new Caesar();
     });
 
-    describe('creating a good guy', function() {
-      it('should create an instance of Good Guy', function () {
-        expect(x instanceof GoodGuy).to.equal(true);
+    describe('creating a Caesar', function() {
+      it('should create an instance of Caesar', function () {
+        expect(x instanceof Caesar).to.equal(true);
       });
     });
 
     describe('my player health', function() {
-      it('should have full health upon creation', function() {
+      it('should have health of 100 upon creation unless specified in instance', function() {
         expect(x.health).to.equal(100);
       });
     });
@@ -30,25 +33,26 @@ import caesars from './caesars';
 
   });
 
-  describe('About My Bad Guy', function() {
+// Challengers
+  describe('About My Challengers', function() {
 
     beforeEach( function() {
-      window.x = new BadGuy();
+      window.x = new Challenger();
     });
 
-    describe('creating a bad guy', function() {
-      it('should create an instance of Bad Guy', function () {
-        expect(x instanceof BadGuy).to.equal(true);
+    describe('creating a Challenger', function() {
+      it('should create an instance of Challenger', function () {
+        expect(x instanceof Challenger).to.equal(true);
       });
     });
 
-    describe('bad guy health', function() {
-      it('should have full health upon creation', function() {
+    describe('Challenger health', function() {
+      it('should have full health upon creation unless specified in instance', function() {
         expect(x.health).to.equal(100);
       });
     });
 
-    describe('bad Guy taking damage', function() {
+    describe('Challenger taking damage', function() {
       it('should lower the score, after getting hit', function() {
         x.hit();
         expect(x.health).to.be.below(100);
@@ -57,13 +61,26 @@ import caesars from './caesars';
 
   });
 
+// Weapons
+  describe('About My Weapons', function() {
+
+    beforeEach( function() {
+      window.x = new Weapon();
+    });
+
+    describe('creating a Weapon', function() {
+      it('should create an instance of Weapon', function () {
+        expect(x instanceof Weapon).to.equal(true);
+      });
+    });
+
+    describe('Weapon damage', function() {
+      it('should have random damage between 10 and 60', function() {
+        expect(x.damage).to.be.below(61);
+        expect(x.damage).to.be.above(9);
+      });
+    });
+
+  });
+
 }());
-
-
-// Good Guy
-
-// Bad Guy
-
-
-// Both will have attack methods
-// Both will have health

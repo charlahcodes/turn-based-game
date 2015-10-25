@@ -3,6 +3,9 @@ import _ from 'underscore';
 
 import Caesar from './caesars';
 import Challenger from './challenger';
+import Weapon from './weapons';
+
+(function() {
 
 // Caesar Instances
 let ourHero = new Caesar(0);
@@ -10,19 +13,25 @@ let julius = new Caesar(100, 'Julius Caesar');
 let little = new Caesar(150, 'Little Caesar');
 let salad = new Caesar(200, 'Caesar Salad');
 
-// Bad Guy Instance
+// Challenger Instances
 let badguy;
 
 let commonCold = new Challenger(100, 'The Common Cold');
 let boredom = new Challenger(150, 'Boredom');
 let death = new Challenger(200, 'Death');
 
+// Weapon instances
+let sword = new Weapon('a big sword');
+let science = new Weapon('science');
+
 // DOM Nodes Selected
 let ggHealth = $('.ggHealth');
 let bgHealth = $('.bgHealth');
-let ggAttack = $('.ggAttack');
+let swordButton = $('.sword');
+let scienceButton = $('.science');
 let fightMessage = $('.fightMessage');
 
+// choose challenger
 let chooseBadGuy = _.random(0, 100);
 
 if (chooseBadGuy < 34) {
@@ -88,12 +97,12 @@ ggHealth.text(ourHero.health);
 bgHealth.text(badguy.health);
 
 // Setting up ON Events
-ggAttack.on('click', function () {
+swordButton.on('click', function () {
 
   // Generate a random amount of hit points
-  // Then attack!!!
-  let num = _.random(0, 25);
-  let num2 = _.random(0, 25);
+  // Then attack and produce outcome
+  let num = sword.damage;
+  let num2 = _.random(0, 40);
   badguy.hit(num);
   bgHealth.css('color', 'red');
   bgHealth.text(ourHero.health);
@@ -116,7 +125,7 @@ ggAttack.on('click', function () {
 
   } else {
     bgHealth.text(badguy.health);
-    fightMessage.text(badguy.name + ' and ' + ourHero.name + ' duke it out!');
+    fightMessage.text(ourHero.name + ' attacks ' + badguy.name + ' with ' + sword.name + ', causing ' + sword.damage + ' points of damage!  ' + badguy.name + ' retaliates at random, causing ' + num2 + ' points of damage.');
     ourHero.hit(num2);
     ggHealth.css('color', 'red');
     ggHealth.text(ourHero.health);
@@ -135,6 +144,55 @@ ggAttack.on('click', function () {
     };
   };
 });
+
+scienceButton.on('click', function () {
+
+  // Generate a random amount of hit points
+  // Then attack and produce outcome
+  let num = science.damage;
+  let num2 = _.random(5, 55);
+  badguy.hit(num);
+  bgHealth.css('color', 'red');
+  bgHealth.text(ourHero.health);
+  setTimeout( function () {
+    bgHealth.css('color', 'white');
+  }, 500);
+
+  if (badguy.health <= 0) {
+    $('.fight').css('display', 'none');
+    $('.background').css('display', 'none');
+    $(document.body).css('background-image', 'url(./images/hail.png');
+    $(document.body).css('background-size', 'cover');
+    $(document.body).css('background-color', 'black');
+    $(document.body).css('background-repeat', 'no-repeat');
+    setTimeout( function () {
+      $('.choose').fadeIn(500);
+      $(document.body).css('background-image', 'none');
+      window.location.reload();
+    }, 1000);
+
+  } else {
+    bgHealth.text(badguy.health);
+    fightMessage.text(ourHero.name + ' attacks ' + badguy.name + ' with ' + science.name + ', causing ' + science.damage + ' points of damage!  ' + badguy.name + ' retaliates at random, causing ' + num2 + ' points of damage.');
+    ourHero.hit(num2);
+    ggHealth.css('color', 'red');
+    ggHealth.text(ourHero.health);
+    setTimeout( function () {
+      ggHealth.css('color', 'white');
+    }, 500);
+      if (ourHero.health <= 0) {
+      fightMessage.text(ourHero.name + " has been defeated!");
+      ggHealth.text('Defeated');
+      setTimeout( function () {
+      $('.background').css('display', 'none');
+      $('.fight').css('display', 'none');
+      $('.choose').fadeIn(500);
+      window.location.reload();
+    }, 1000);
+    };
+  };
+});
+}());
 
 
 

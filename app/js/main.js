@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var Caesar = function Caesar(totalHealth, name) {
 
-  this.health = totalHealth;
+  this.health = totalHealth || 100;
   this.name = name;
 
   this.hit = function (num) {
@@ -27,7 +27,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 var Challenger = function Challenger(totalHealth, name) {
 
-  this.health = totalHealth;
+  this.health = totalHealth || 100;
   this.name = name;
 
   this.hit = function (num) {
@@ -60,138 +60,223 @@ var _challenger = require('./challenger');
 
 var _challenger2 = _interopRequireDefault(_challenger);
 
-// Caesar Instances
-var ourHero = new _caesars2['default'](0);
-var julius = new _caesars2['default'](100, 'Julius Caesar');
-var little = new _caesars2['default'](150, 'Little Caesar');
-var salad = new _caesars2['default'](200, 'Caesar Salad');
+var _weapons = require('./weapons');
 
-// Bad Guy Instance
-var badguy = undefined;
+var _weapons2 = _interopRequireDefault(_weapons);
 
-var commonCold = new _challenger2['default'](100, 'The Common Cold');
-var boredom = new _challenger2['default'](150, 'Boredom');
-var death = new _challenger2['default'](200, 'Death');
+(function () {
 
-// DOM Nodes Selected
-var ggHealth = (0, _jquery2['default'])('.ggHealth');
-var bgHealth = (0, _jquery2['default'])('.bgHealth');
-var ggAttack = (0, _jquery2['default'])('.ggAttack');
-var fightMessage = (0, _jquery2['default'])('.fightMessage');
+  // Caesar Instances
+  var ourHero = new _caesars2['default'](0);
+  var julius = new _caesars2['default'](100, 'Julius Caesar');
+  var little = new _caesars2['default'](150, 'Little Caesar');
+  var salad = new _caesars2['default'](200, 'Caesar Salad');
 
-var chooseBadGuy = _underscore2['default'].random(0, 100);
+  // Challenger Instances
+  var badguy = undefined;
 
-if (chooseBadGuy < 34) {
-  badguy = commonCold;
-  (0, _jquery2['default'])('.challenger').css('background', 'url(./images/cold.jpg)');
-} else if (chooseBadGuy > 34 && chooseBadGuy < 67) {
-  badguy = boredom;
-  (0, _jquery2['default'])('.challenger').css('background', 'url(./images/boredom.jpg)');
-} else {
-  badguy = death;
-  (0, _jquery2['default'])('.challenger').css('background', 'url(./images/death.jpg)');
-};
+  var commonCold = new _challenger2['default'](100, 'The Common Cold');
+  var boredom = new _challenger2['default'](150, 'Boredom');
+  var death = new _challenger2['default'](200, 'Death');
 
-// On click, choose correct player and hide choices/show fight screen
-(0, _jquery2['default'])(".choice1").click(function () {
-  ourHero = julius;
-  ggHealth.text(ourHero.health);
-  (0, _jquery2['default'])('.background').css('background', 'url(./images/julius.jpg)');
-  (0, _jquery2['default'])('.background').css('background-size', 'cover');
-  (0, _jquery2['default'])('.ourHero').css('background', 'url(./images/julius_head.jpg)');
-  (0, _jquery2['default'])('.choose').fadeOut(100);
-  (0, _jquery2['default'])('.logo').fadeOut(100, function () {
-    (0, _jquery2['default'])('.fight').fadeIn(200);
-    (0, _jquery2['default'])('.background').fadeIn(200);
-  });
+  // Weapon instances
+  var sword = new _weapons2['default']('a big sword');
+  var science = new _weapons2['default']('science');
 
-  ggHealth.text(ourHero.health);
-  bgHealth.text(badguy.health);
-});
+  // DOM Nodes Selected
+  var ggHealth = (0, _jquery2['default'])('.ggHealth');
+  var bgHealth = (0, _jquery2['default'])('.bgHealth');
+  var swordButton = (0, _jquery2['default'])('.sword');
+  var scienceButton = (0, _jquery2['default'])('.science');
+  var fightMessage = (0, _jquery2['default'])('.fightMessage');
 
-(0, _jquery2['default'])(".choice2").click(function () {
-  ourHero = little;
-  ggHealth.text(ourHero.health);
-  (0, _jquery2['default'])('.background').css('background', 'url(./images/little.jpg)');
-  (0, _jquery2['default'])('.background').css('background-size', 'cover');
-  (0, _jquery2['default'])('.ourHero').css('background', 'url(./images/lc_head.jpg)');
-  (0, _jquery2['default'])('.choose').fadeOut(100);
-  (0, _jquery2['default'])('.logo').fadeOut(100, function () {
-    (0, _jquery2['default'])('.fight').fadeIn(200);
-    (0, _jquery2['default'])('.background').fadeIn(200);
-  });
-  ggHealth.text(ourHero.health);
-  bgHealth.text(badguy.health);
-});
+  // choose challenger
+  var chooseBadGuy = _underscore2['default'].random(0, 100);
 
-(0, _jquery2['default'])(".choice3").click(function () {
-  ourHero = salad;
-  ggHealth.text(ourHero.health);
-  (0, _jquery2['default'])('.background').css('background', 'url(./images/salad.jpg)');
-  (0, _jquery2['default'])('.background').css('background-size', 'cover');
-  (0, _jquery2['default'])('.ourHero').css('background', 'url(./images/salad_head.jpg)');
-  (0, _jquery2['default'])('.choose').fadeOut(100);
-  (0, _jquery2['default'])('.logo').fadeOut(100, function () {
-    (0, _jquery2['default'])('.fight').fadeIn(200);
-    (0, _jquery2['default'])('.background').fadeIn(200);
-  });
-  ggHealth.text(ourHero.health);
-  bgHealth.text(badguy.health);
-});
-
-// Show current (default) health
-ggHealth.text(ourHero.health);
-bgHealth.text(badguy.health);
-
-// Setting up ON Events
-ggAttack.on('click', function () {
-
-  // Generate a random amount of hit points
-  // Then attack!!!
-  var num = _underscore2['default'].random(0, 25);
-  var num2 = _underscore2['default'].random(0, 25);
-  badguy.hit(num);
-  bgHealth.css('color', 'red');
-  bgHealth.text(ourHero.health);
-  setTimeout(function () {
-    bgHealth.css('color', 'white');
-  }, 500);
-
-  if (badguy.health <= 0) {
-    (0, _jquery2['default'])('.fight').css('display', 'none');
-    (0, _jquery2['default'])('.background').css('display', 'none');
-    (0, _jquery2['default'])(document.body).css('background-image', 'url(./images/hail.png');
-    (0, _jquery2['default'])(document.body).css('background-size', 'cover');
-    (0, _jquery2['default'])(document.body).css('background-color', 'black');
-    (0, _jquery2['default'])(document.body).css('background-repeat', 'no-repeat');
-    setTimeout(function () {
-      (0, _jquery2['default'])('.choose').fadeIn(500);
-      (0, _jquery2['default'])(document.body).css('background-image', 'none');
-      window.location.reload();
-    }, 1000);
+  if (chooseBadGuy < 34) {
+    badguy = commonCold;
+    (0, _jquery2['default'])('.challenger').css('background', 'url(./images/cold.jpg)');
+  } else if (chooseBadGuy > 34 && chooseBadGuy < 67) {
+    badguy = boredom;
+    (0, _jquery2['default'])('.challenger').css('background', 'url(./images/boredom.jpg)');
   } else {
-    bgHealth.text(badguy.health);
-    fightMessage.text(badguy.name + ' and ' + ourHero.name + ' duke it out!');
-    ourHero.hit(num2);
-    ggHealth.css('color', 'red');
+    badguy = death;
+    (0, _jquery2['default'])('.challenger').css('background', 'url(./images/death.jpg)');
+  };
+
+  // On click, choose correct player and hide choices/show fight screen
+  (0, _jquery2['default'])(".choice1").click(function () {
+    ourHero = julius;
     ggHealth.text(ourHero.health);
+    (0, _jquery2['default'])('.background').css('background', 'url(./images/julius.jpg)');
+    (0, _jquery2['default'])('.background').css('background-size', 'cover');
+    (0, _jquery2['default'])('.ourHero').css('background', 'url(./images/julius_head.jpg)');
+    (0, _jquery2['default'])('.choose').fadeOut(100);
+    (0, _jquery2['default'])('.logo').fadeOut(100, function () {
+      (0, _jquery2['default'])('.fight').fadeIn(200);
+      (0, _jquery2['default'])('.background').fadeIn(200);
+    });
+
+    ggHealth.text(ourHero.health);
+    bgHealth.text(badguy.health);
+  });
+
+  (0, _jquery2['default'])(".choice2").click(function () {
+    ourHero = little;
+    ggHealth.text(ourHero.health);
+    (0, _jquery2['default'])('.background').css('background', 'url(./images/little.jpg)');
+    (0, _jquery2['default'])('.background').css('background-size', 'cover');
+    (0, _jquery2['default'])('.ourHero').css('background', 'url(./images/lc_head.jpg)');
+    (0, _jquery2['default'])('.choose').fadeOut(100);
+    (0, _jquery2['default'])('.logo').fadeOut(100, function () {
+      (0, _jquery2['default'])('.fight').fadeIn(200);
+      (0, _jquery2['default'])('.background').fadeIn(200);
+    });
+    ggHealth.text(ourHero.health);
+    bgHealth.text(badguy.health);
+  });
+
+  (0, _jquery2['default'])(".choice3").click(function () {
+    ourHero = salad;
+    ggHealth.text(ourHero.health);
+    (0, _jquery2['default'])('.background').css('background', 'url(./images/salad.jpg)');
+    (0, _jquery2['default'])('.background').css('background-size', 'cover');
+    (0, _jquery2['default'])('.ourHero').css('background', 'url(./images/salad_head.jpg)');
+    (0, _jquery2['default'])('.choose').fadeOut(100);
+    (0, _jquery2['default'])('.logo').fadeOut(100, function () {
+      (0, _jquery2['default'])('.fight').fadeIn(200);
+      (0, _jquery2['default'])('.background').fadeIn(200);
+    });
+    ggHealth.text(ourHero.health);
+    bgHealth.text(badguy.health);
+  });
+
+  // Show current (default) health
+  ggHealth.text(ourHero.health);
+  bgHealth.text(badguy.health);
+
+  // Setting up ON Events
+  swordButton.on('click', function () {
+
+    // Generate a random amount of hit points
+    // Then attack and produce outcome
+    var num = sword.damage;
+    var num2 = _underscore2['default'].random(0, 40);
+    badguy.hit(num);
+    bgHealth.css('color', 'red');
+    bgHealth.text(ourHero.health);
     setTimeout(function () {
-      ggHealth.css('color', 'white');
+      bgHealth.css('color', 'white');
     }, 500);
-    if (ourHero.health <= 0) {
-      fightMessage.text(ourHero.name + " has been defeated!");
-      ggHealth.text('Defeated');
+
+    if (badguy.health <= 0) {
+      (0, _jquery2['default'])('.fight').css('display', 'none');
+      (0, _jquery2['default'])('.background').css('display', 'none');
+      (0, _jquery2['default'])(document.body).css('background-image', 'url(./images/hail.png');
+      (0, _jquery2['default'])(document.body).css('background-size', 'cover');
+      (0, _jquery2['default'])(document.body).css('background-color', 'black');
+      (0, _jquery2['default'])(document.body).css('background-repeat', 'no-repeat');
       setTimeout(function () {
-        (0, _jquery2['default'])('.background').css('display', 'none');
-        (0, _jquery2['default'])('.fight').css('display', 'none');
         (0, _jquery2['default'])('.choose').fadeIn(500);
+        (0, _jquery2['default'])(document.body).css('background-image', 'none');
         window.location.reload();
       }, 1000);
+    } else {
+      bgHealth.text(badguy.health);
+      fightMessage.text(ourHero.name + ' attacks ' + badguy.name + ' with ' + sword.name + ', causing ' + sword.damage + ' points of damage!  ' + badguy.name + ' retaliates at random, causing ' + num2 + ' points of damage.');
+      ourHero.hit(num2);
+      ggHealth.css('color', 'red');
+      ggHealth.text(ourHero.health);
+      setTimeout(function () {
+        ggHealth.css('color', 'white');
+      }, 500);
+      if (ourHero.health <= 0) {
+        fightMessage.text(ourHero.name + " has been defeated!");
+        ggHealth.text('Defeated');
+        setTimeout(function () {
+          (0, _jquery2['default'])('.background').css('display', 'none');
+          (0, _jquery2['default'])('.fight').css('display', 'none');
+          (0, _jquery2['default'])('.choose').fadeIn(500);
+          window.location.reload();
+        }, 1000);
+      };
     };
-  };
+  });
+
+  scienceButton.on('click', function () {
+
+    // Generate a random amount of hit points
+    // Then attack and produce outcome
+    var num = science.damage;
+    var num2 = _underscore2['default'].random(5, 55);
+    badguy.hit(num);
+    bgHealth.css('color', 'red');
+    bgHealth.text(ourHero.health);
+    setTimeout(function () {
+      bgHealth.css('color', 'white');
+    }, 500);
+
+    if (badguy.health <= 0) {
+      (0, _jquery2['default'])('.fight').css('display', 'none');
+      (0, _jquery2['default'])('.background').css('display', 'none');
+      (0, _jquery2['default'])(document.body).css('background-image', 'url(./images/hail.png');
+      (0, _jquery2['default'])(document.body).css('background-size', 'cover');
+      (0, _jquery2['default'])(document.body).css('background-color', 'black');
+      (0, _jquery2['default'])(document.body).css('background-repeat', 'no-repeat');
+      setTimeout(function () {
+        (0, _jquery2['default'])('.choose').fadeIn(500);
+        (0, _jquery2['default'])(document.body).css('background-image', 'none');
+        window.location.reload();
+      }, 1000);
+    } else {
+      bgHealth.text(badguy.health);
+      fightMessage.text(ourHero.name + ' attacks ' + badguy.name + ' with ' + science.name + ', causing ' + science.damage + ' points of damage!  ' + badguy.name + ' retaliates at random, causing ' + num2 + ' points of damage.');
+      ourHero.hit(num2);
+      ggHealth.css('color', 'red');
+      ggHealth.text(ourHero.health);
+      setTimeout(function () {
+        ggHealth.css('color', 'white');
+      }, 500);
+      if (ourHero.health <= 0) {
+        fightMessage.text(ourHero.name + " has been defeated!");
+        ggHealth.text('Defeated');
+        setTimeout(function () {
+          (0, _jquery2['default'])('.background').css('display', 'none');
+          (0, _jquery2['default'])('.fight').css('display', 'none');
+          (0, _jquery2['default'])('.choose').fadeIn(500);
+          window.location.reload();
+        }, 1000);
+      };
+    };
+  });
+})();
+
+},{"./caesars":1,"./challenger":2,"./weapons":4,"jquery":5,"underscore":6}],4:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
 });
 
-},{"./caesars":1,"./challenger":2,"jquery":4,"underscore":5}],4:[function(require,module,exports){
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _underscore = require('underscore');
+
+var _underscore2 = _interopRequireDefault(_underscore);
+
+var Weapon = function Weapon(name) {
+  this.damage = _underscore2['default'].random(10, 60);
+  this.name = name;
+};
+
+exports['default'] = Weapon;
+module.exports = exports['default'];
+
+},{"jquery":5,"underscore":6}],5:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
@@ -9403,7 +9488,7 @@ return jQuery;
 
 }));
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 //     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors

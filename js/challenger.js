@@ -1,6 +1,6 @@
 let Challenger = function (totalHealth, name) {
 
-  this.health = totalHealth;
+  this.health = totalHealth || 100;
   this.name = name;
 
   this.hit = function (num) {
