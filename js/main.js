@@ -169,7 +169,7 @@ scienceButton.on('click', function () {
       $('.choose').fadeIn(500);
       $(document.body).css('background-image', 'none');
       window.location.reload();
-    }, 1000);
+    }, 2000);
 
   } else {
     bgHealth.text(badguy.health);
@@ -188,7 +188,7 @@ scienceButton.on('click', function () {
       $('.fight').css('display', 'none');
       $('.choose').fadeIn(500);
       window.location.reload();
-    }, 1000);
+    }, 2000);
     };
   };
 });

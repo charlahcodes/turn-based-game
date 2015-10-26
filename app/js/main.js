@@ -227,7 +227,7 @@ var _weapons2 = _interopRequireDefault(_weapons);
         (0, _jquery2['default'])('.choose').fadeIn(500);
         (0, _jquery2['default'])(document.body).css('background-image', 'none');
         window.location.reload();
-      }, 1000);
+      }, 2000);
     } else {
       bgHealth.text(badguy.health);
       fightMessage.text(ourHero.name + ' attacks ' + badguy.name + ' with ' + science.name + ', causing ' + science.damage + ' points of damage!  ' + badguy.name + ' retaliates at random, causing ' + num2 + ' points of damage.');
@@ -245,7 +245,7 @@ var _weapons2 = _interopRequireDefault(_weapons);
           (0, _jquery2['default'])('.fight').css('display', 'none');
           (0, _jquery2['default'])('.choose').fadeIn(500);
           window.location.reload();
-        }, 1000);
+        }, 2000);
       };
     };
   });
