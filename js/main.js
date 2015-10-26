@@ -118,10 +118,8 @@ swordButton.on('click', function () {
     $(document.body).css('background-color', 'black');
     $(document.body).css('background-repeat', 'no-repeat');
     setTimeout( function () {
-      $('.choose').fadeIn(500);
-      $(document.body).css('background-image', 'none');
       window.location.reload();
-    }, 1000);
+    }, 3000);
 
   } else {
     bgHealth.text(badguy.health);
@@ -136,11 +134,8 @@ swordButton.on('click', function () {
       fightMessage.text(ourHero.name + " has been defeated!");
       ggHealth.text('Defeated');
       setTimeout( function () {
-      $('.background').css('display', 'none');
-      $('.fight').css('display', 'none');
-      $('.choose').fadeIn(500);
       window.location.reload();
-    }, 1000);
+    }, 3000);
     };
   };
 });
@@ -166,10 +161,8 @@ scienceButton.on('click', function () {
     $(document.body).css('background-color', 'black');
     $(document.body).css('background-repeat', 'no-repeat');
     setTimeout( function () {
-      $('.choose').fadeIn(500);
-      $(document.body).css('background-image', 'none');
       window.location.reload();
-    }, 2000);
+    }, 3000);
 
   } else {
     bgHealth.text(badguy.health);
@@ -184,11 +177,8 @@ scienceButton.on('click', function () {
       fightMessage.text(ourHero.name + " has been defeated!");
       ggHealth.text('Defeated');
       setTimeout( function () {
-      $('.background').css('display', 'none');
-      $('.fight').css('display', 'none');
-      $('.choose').fadeIn(500);
       window.location.reload();
-    }, 2000);
+    }, 3000);
     };
   };
 });

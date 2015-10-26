@@ -177,10 +177,8 @@ var _weapons2 = _interopRequireDefault(_weapons);
       (0, _jquery2['default'])(document.body).css('background-color', 'black');
       (0, _jquery2['default'])(document.body).css('background-repeat', 'no-repeat');
       setTimeout(function () {
-        (0, _jquery2['default'])('.choose').fadeIn(500);
-        (0, _jquery2['default'])(document.body).css('background-image', 'none');
         window.location.reload();
-      }, 1000);
+      }, 3000);
     } else {
       bgHealth.text(badguy.health);
       fightMessage.text(ourHero.name + ' attacks ' + badguy.name + ' with ' + sword.name + ', causing ' + sword.damage + ' points of damage!  ' + badguy.name + ' retaliates at random, causing ' + num2 + ' points of damage.');
@@ -194,11 +192,8 @@ var _weapons2 = _interopRequireDefault(_weapons);
         fightMessage.text(ourHero.name + " has been defeated!");
         ggHealth.text('Defeated');
         setTimeout(function () {
-          (0, _jquery2['default'])('.background').css('display', 'none');
-          (0, _jquery2['default'])('.fight').css('display', 'none');
-          (0, _jquery2['default'])('.choose').fadeIn(500);
           window.location.reload();
-        }, 1000);
+        }, 3000);
       };
     };
   });
@@ -224,10 +219,8 @@ var _weapons2 = _interopRequireDefault(_weapons);
       (0, _jquery2['default'])(document.body).css('background-color', 'black');
       (0, _jquery2['default'])(document.body).css('background-repeat', 'no-repeat');
       setTimeout(function () {
-        (0, _jquery2['default'])('.choose').fadeIn(500);
-        (0, _jquery2['default'])(document.body).css('background-image', 'none');
         window.location.reload();
-      }, 2000);
+      }, 3000);
     } else {
       bgHealth.text(badguy.health);
       fightMessage.text(ourHero.name + ' attacks ' + badguy.name + ' with ' + science.name + ', causing ' + science.damage + ' points of damage!  ' + badguy.name + ' retaliates at random, causing ' + num2 + ' points of damage.');
@@ -241,11 +234,8 @@ var _weapons2 = _interopRequireDefault(_weapons);
         fightMessage.text(ourHero.name + " has been defeated!");
         ggHealth.text('Defeated');
         setTimeout(function () {
-          (0, _jquery2['default'])('.background').css('display', 'none');
-          (0, _jquery2['default'])('.fight').css('display', 'none');
-          (0, _jquery2['default'])('.choose').fadeIn(500);
           window.location.reload();
-        }, 2000);
+        }, 3000);
       };
     };
   });
